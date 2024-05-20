@@ -9,7 +9,7 @@ class VerifyApiToken
 {
     public function handle(Request $request, Closure $next)
     {
-        $token = $request->bearerToken(); // Obtiene el token del header Authorization
+        $token = $request->bearerToken();
 
         if ($token === env('FREE_API_TOKEN')) {
             $request->attributes->add(['api_type' => 'free']);
@@ -23,7 +23,6 @@ class VerifyApiToken
             return response()->json(['message' => 'Unauthorized'], 401);
         }
 
-        // Aplicar throttle basado en el tipo de token
         return app(\Illuminate\Routing\Middleware\ThrottleRequests::class)
             ->handle($request, $next, $maxAttempts, $decayMinutes);
     }

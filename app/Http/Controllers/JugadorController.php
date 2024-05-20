@@ -22,4 +22,10 @@ class JugadorController extends Controller
 
         return response()->json($jugador, 201);
     }
+    
+    public function jugadoresSinEquipo()
+    {
+        $jugadores = Jugador::doesntHave('equipos')->get();
+        return response()->json($jugadores);
+    }
 }

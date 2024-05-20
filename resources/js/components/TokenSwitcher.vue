@@ -6,7 +6,7 @@
   </template>
   
   <script>
-  import { changeApiToken } from '../axiosConfig'; // Asegúrate de que la ruta es correcta
+  import { changeApiToken } from '../axiosConfig';
   
   export default {
     methods: {

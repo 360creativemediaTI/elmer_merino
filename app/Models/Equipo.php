@@ -6,13 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 class Equipo extends Model
 {
     protected $fillable = [
-        'nombre', 'liga_id'
+        'nombre'
     ];
 
-    public function liga()
-    {
-        return $this->belongsTo(Liga::class);
-    }
 
     public function jugadores()
     {

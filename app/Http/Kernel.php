@@ -60,9 +60,8 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'throttle.free' => \App\Http\Middleware\ThrottleFreeApi::class,
         'verifyToken' => \App\Http\Middleware\VerifyApiToken::class,
-        'verifyPaid' => \App\Http\Middleware\VerifyPaidToken::class,
+        'customThrottle' => \App\Http\Middleware\CustomThrottleRequests::class,
     ];
 
     /**

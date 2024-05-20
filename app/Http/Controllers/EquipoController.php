@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Equipo;
 use App\Models\Liga;
+use App\Models\JUgador;
 use Illuminate\Http\Request;
 
 class EquipoController extends Controller
@@ -20,8 +21,7 @@ class EquipoController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nombre' => 'required|string',
-            'liga_id' => 'required|exists:ligas,id'
+            'nombre' => 'required|string'
         ]);
 
         $equipo = Equipo::create($request->all());
@@ -43,5 +43,15 @@ class EquipoController extends Controller
     {
         $equipo->delete();
         return response()->json(null, 204);
+    }
+
+    public function addJugador(Request $request, $equipoId, $jugadorId)
+    {
+        $equipo = Equipo::findOrFail($equipoId);
+        $jugador = Jugador::findOrFail($jugadorId);
+        
+        $equipo->jugadores()->attach($jugador);
+
+        return response()->json(['message' => 'Jugador agregado al equipo con éxito']);
     }
 }
